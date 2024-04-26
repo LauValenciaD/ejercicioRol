@@ -19,6 +19,7 @@ public class GUI extends JFrame {
     private JLabel lblTiutlo;
     public static List<Raza> razasCreadas = new ArrayList<>();
     public static List<Personaje> personajesCreados = new ArrayList<>();
+    public static DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
 
 
     public static void main(String[] args) {
@@ -48,23 +49,27 @@ public class GUI extends JFrame {
         lblTiutlo = new JLabel("Creador de Personajes");
         lblTiutlo.setForeground(new Color(255, 255, 255));
         lblTiutlo.setFont(new Font("Impact", Font.PLAIN, 30));
-        lblTiutlo.setBounds(27, 34, 313, 46);
+        lblTiutlo.setBounds(39, 34, 289, 46);
         desktopPane.add(lblTiutlo);
 
         // Crear botones de opción
         radioOpcion1 = new JRadioButton("Crear Raza");
+        radioOpcion1.setFont(new Font("Arial Black", Font.PLAIN, 12));
         radioOpcion1.setBounds(50, 106, 195, 30);
         desktopPane.add(radioOpcion1);
 
         radioOpcion2 = new JRadioButton("Crear Personaje jugable");
-        radioOpcion2.setBounds(50, 156, 195, 30);
+        radioOpcion2.setFont(new Font("Arial Black", Font.PLAIN, 12));
+        radioOpcion2.setBounds(50, 156, 246, 30);
         desktopPane.add(radioOpcion2);
 
         radioOpcion3 = new JRadioButton("Crear Personaje no jugable");
-        radioOpcion3.setBounds(50, 206, 195, 30);
+        radioOpcion3.setFont(new Font("Arial Black", Font.PLAIN, 12));
+        radioOpcion3.setBounds(50, 206, 260, 30);
         desktopPane.add(radioOpcion3);
         
         radioOpcion4 = new JRadioButton("Ver personajes creados");
+        radioOpcion4.setFont(new Font("Arial Black", Font.PLAIN, 12));
         radioOpcion4.setBounds(50, 256, 195, 30);
         desktopPane.add(radioOpcion4);
 
@@ -77,7 +82,7 @@ public class GUI extends JFrame {
 
         // Crear botón de confirmar
         btnConfirmar = new JButton("Confirmar");
-        btnConfirmar.setBounds(174, 316, 100, 30);
+        btnConfirmar.setBounds(135, 310, 100, 30);
         desktopPane.add(btnConfirmar);
         
         JPanel panel = new JPanel();

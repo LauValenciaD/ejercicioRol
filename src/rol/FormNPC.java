@@ -46,14 +46,14 @@ public class FormNPC extends JInternalFrame {
         lblRaza.setBounds(10, 90, 150, 30);
         getContentPane().add(lblRaza);
         
-        txtRaza = new JTextField();
-        txtRaza.setBounds(170, 90, 50, 30);
-        getContentPane().add(txtRaza);
+        JComboBox<String> comboBoxRazas = new JComboBox<>(GUI.comboBoxModel);
+        comboBoxRazas.setBounds(160, 90, 150, 30);
+        getContentPane().add(comboBoxRazas);
 
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(FormNPC.class.getResource("/images/bowser (1).gif")));
-        lblNewLabel.setBounds(137, 170, 120, 123);
+        lblNewLabel.setIcon(new ImageIcon(FormPersonaje.class.getResource("/images/link-pixel-art (1).gif")));
+        lblNewLabel.setBounds(127, 170, 120, 145);
         getContentPane().add(lblNewLabel);
 
         // Crear botones "Guardar" y "Volver"
@@ -69,57 +69,17 @@ public class FormNPC extends JInternalFrame {
             public void actionPerformed(ActionEvent e) {
                 String nombre = txtNombrePJ.getText();
                 String profesion = (String) comboBoxProfesion.getSelectedItem();
-                String razaCr = txtRaza.getText();
+                String razaCr = (String) comboBoxRazas.getSelectedItem();
 
-                boolean coincide = false;
-                for (Raza raza : GUI.razasCreadas) {
-                    if (raza.getNombre().equals(razaCr)) {
-                        coincide = true;
-                        // Imprime los datos de caractBonif y bonificador de la Raza encontrada
-                        JOptionPane.showMessageDialog(btnGuardar, razaCr + " caracteristica: " + raza.getCaractBonif() + " y bonificador: " + raza.getBonificador());
-
-                        Caracteristicas caract = new Caracteristicas();
-                        switch (raza.getCaractBonif()) {
-                            case "Fue":
-                                caract.setFuerza(caract.getFuerza() + raza.getBonificador());
-                                break;
-                            case "Des":
-                                caract.setDestreza(caract.getDestreza() + raza.getBonificador());
-                                break;
-                            case "Con":
-                                caract.setConstitucion(caract.getConstitucion() + raza.getBonificador());
-                                break;
-                            case "Sab":
-                                caract.setSabiduria(caract.getSabiduria() + raza.getBonificador());
-                                break;
-                            case "Int":
-                                caract.setInteligencia(caract.getInteligencia() + raza.getBonificador());
-                                break;
-                            case "Car":
-                                caract.setCarisma(caract.getCarisma() + raza.getBonificador());
-                                break;
-                        }
-
-                        Personaje nuevoPersonaje;
-                        if (profesion.equals("mago")) {
-                            Mago nuevoMago = new Mago();
-                            nuevoPersonaje = new Personaje(nombre, caract, nuevoMago, raza);
-                        } else {
-                            Guerrero nuevoGuerrero = new Guerrero();
-                            nuevoPersonaje = new Personaje(nombre, caract, nuevoGuerrero, raza);
-                        }
-
-                        GUI.personajesCreados.add(nuevoPersonaje);
-                        JOptionPane.showMessageDialog(btnGuardar, "Personaje " + nombre + " creado correctamente.");
-                        break;
-                    }
+        
+                    Personaje nuevoPersonaje = new Personaje(nombre, razaCr, profesion, true);
+                    GUI.personajesCreados.add(nuevoPersonaje);
+                    JOptionPane.showMessageDialog(btnGuardar, "Personaje " + nombre + " creado correctamente.");
+ 
                 }
-
-                if (!coincide) {
-                    JOptionPane.showMessageDialog(btnGuardar, "El nombre no coincide con el nombre de ninguna raza.");
-                }
-            }
         });
+
+
 
         // Agregar ActionListener al botón "Volver"
         btnVolver.addActionListener(new ActionListener() {
