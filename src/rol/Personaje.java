@@ -47,4 +47,34 @@ public void usarDefensa() {
         ((Mago) profesion).DefensaFisico();
     }
 }
+public String getNombre() {
+	return nombre;
+}
+public void setNombre(String nombre) {
+	this.nombre = nombre;
+}
+public Caracteristicas getCaract() {
+	return caract;
+}
+public void setCaract(Caracteristicas caract) {
+	this.caract = caract;
+}
+public Profesion getProfesion() {
+	return profesion;
+}
+public void setProfesion(Profesion profesion) {
+	this.profesion = profesion;
+}
+public Raza getRaza() {
+	return raza;
+}
+public void setRaza(Raza raza) {
+	this.raza = raza;
+}
+public boolean isJugador() {
+	return jugador;
+}
+public void setJugador(boolean jugador) {
+	this.jugador = jugador;
+}
 }

@@ -107,15 +107,18 @@ public class GUI extends JFrame {
                     formRaza.setVisible(true); // Hacer visible la instancia de FormRaza
                 } else if (radioOpcion2.isSelected()) {
                     // Mostrar formulario 2
-                	FormPersonaje formPersonaje = new FormPersonaje(); // Crear una nueva instancia de FormRaza
+                	FormPersonaje formPersonaje = new FormPersonaje();
                 	desktopPane.add(formPersonaje);
-                    formPersonaje.setVisible(true); // Hacer visible la instancia de FormRaza
+                    formPersonaje.setVisible(true); 
                 } else if (radioOpcion3.isSelected()) {
                     // Mostrar formulario 3
-                	FormNPC formNPC = new FormNPC(); // Crear una nueva instancia de FormRaza
+                	FormNPC formNPC = new FormNPC();
                 	desktopPane.add(formNPC);
-                    formNPC.setVisible(true); // Hacer visible la instancia de FormRaza
+                    formNPC.setVisible(true); 
                 } else if (radioOpcion4.isSelected()) {
+                	FormVisualizar formVisualizar = new FormVisualizar();
+                	desktopPane.add(formVisualizar);
+                    formVisualizar.setVisible(true); 
                     // Mostrar texto
                 }
             }
