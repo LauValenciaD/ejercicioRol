@@ -72,7 +72,7 @@ public class FormRaza extends JInternalFrame {
                 Raza nuevaRaza = new Raza(nombre, caracteristica, bono);
             	GUI.razasCreadas.add(nuevaRaza);
             	
-                JOptionPane.showMessageDialog(btnGuardar, "Raza creada correctamente.");
+                JOptionPane.showMessageDialog(btnGuardar, "Raza " + nombre + " con bonificador "+ caracteristica + bono + " creada correctamente.");
             }
         });
 

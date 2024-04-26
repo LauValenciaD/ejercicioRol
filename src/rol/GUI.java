@@ -18,7 +18,7 @@ public class GUI extends JFrame {
     private JLabel lblNewLabel;
     private JLabel lblTiutlo;
     public static List<Raza> razasCreadas = new ArrayList<>();
-    public static List<Raza> personajesCreados = new ArrayList<>();
+    public static List<Personaje> personajesCreados = new ArrayList<>();
 
 
     public static void main(String[] args) {

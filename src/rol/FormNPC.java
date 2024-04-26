@@ -67,7 +67,57 @@ public class FormNPC extends JInternalFrame {
         
         btnGuardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnGuardar, "Personaje creado correctamente.");
+                String nombre = txtNombrePJ.getText();
+                String profesion = (String) comboBoxProfesion.getSelectedItem();
+                String razaCr = txtRaza.getText();
+
+                boolean coincide = false;
+                for (Raza raza : GUI.razasCreadas) {
+                    if (raza.getNombre().equals(razaCr)) {
+                        coincide = true;
+                        // Imprime los datos de caractBonif y bonificador de la Raza encontrada
+                        JOptionPane.showMessageDialog(btnGuardar, razaCr + " caracteristica: " + raza.getCaractBonif() + " y bonificador: " + raza.getBonificador());
+
+                        Caracteristicas caract = new Caracteristicas();
+                        switch (raza.getCaractBonif()) {
+                            case "Fue":
+                                caract.setFuerza(caract.getFuerza() + raza.getBonificador());
+                                break;
+                            case "Des":
+                                caract.setDestreza(caract.getDestreza() + raza.getBonificador());
+                                break;
+                            case "Con":
+                                caract.setConstitucion(caract.getConstitucion() + raza.getBonificador());
+                                break;
+                            case "Sab":
+                                caract.setSabiduria(caract.getSabiduria() + raza.getBonificador());
+                                break;
+                            case "Int":
+                                caract.setInteligencia(caract.getInteligencia() + raza.getBonificador());
+                                break;
+                            case "Car":
+                                caract.setCarisma(caract.getCarisma() + raza.getBonificador());
+                                break;
+                        }
+
+                        Personaje nuevoPersonaje;
+                        if (profesion.equals("mago")) {
+                            Mago nuevoMago = new Mago();
+                            nuevoPersonaje = new Personaje(nombre, caract, nuevoMago, raza);
+                        } else {
+                            Guerrero nuevoGuerrero = new Guerrero();
+                            nuevoPersonaje = new Personaje(nombre, caract, nuevoGuerrero, raza);
+                        }
+
+                        GUI.personajesCreados.add(nuevoPersonaje);
+                        JOptionPane.showMessageDialog(btnGuardar, "Personaje " + nombre + " creado correctamente.");
+                        break;
+                    }
+                }
+
+                if (!coincide) {
+                    JOptionPane.showMessageDialog(btnGuardar, "El nombre no coincide con el nombre de ninguna raza.");
+                }
             }
         });
 
