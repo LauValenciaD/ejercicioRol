@@ -52,8 +52,8 @@ public class FormNPC extends JInternalFrame {
 
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(FormPersonaje.class.getResource("/images/link-pixel-art (1).gif")));
-        lblNewLabel.setBounds(127, 170, 120, 145);
+        lblNewLabel.setIcon(new ImageIcon(FormNPC.class.getResource("/images/bowser (1).gif")));
+        lblNewLabel.setBounds(137, 170, 120, 123);
         getContentPane().add(lblNewLabel);
 
         // Crear botones "Guardar" y "Volver"
@@ -72,7 +72,7 @@ public class FormNPC extends JInternalFrame {
                 String razaCr = (String) comboBoxRazas.getSelectedItem();
 
         
-                    Personaje nuevoPersonaje = new Personaje(nombre, razaCr, profesion, true);
+                    Personaje nuevoPersonaje = new Personaje(nombre, razaCr, profesion);
                     GUI.personajesCreados.add(nuevoPersonaje);
                     JOptionPane.showMessageDialog(btnGuardar, "Personaje " + nombre + " creado correctamente.");
  
