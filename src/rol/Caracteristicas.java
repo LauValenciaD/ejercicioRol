@@ -20,8 +20,8 @@ public Caracteristicas() {
 	this.inteligencia = generarCaracteristicas();
 	this.sabiduria = generarCaracteristicas();
 	this.carisma = generarCaracteristicas();
-	this.vida = 0;
-	this.defensa = 0;
+	this.vida = 100;
+	this.defensa = 5;
 }
 //metodo
 public static int generarCaracteristicas()

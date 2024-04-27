@@ -45,7 +45,7 @@ public class FormVisualizar extends JInternalFrame {
         getContentPane().add(lblNewLabel);
         
         
-        JList list = new JList();
+        JList<String> list = new JList<String>();
         list.setBounds(155, 93, 158, 132);
         getContentPane().add(list);
         

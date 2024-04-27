@@ -62,8 +62,8 @@ public class DatosPersonaje extends JFrame {
         model.addRow(new Object[]{"Inteligencia", caract.getInteligencia()});
         model.addRow(new Object[]{"Sabiduria", caract.getSabiduria()});
         model.addRow(new Object[]{"Carisma", caract.getCarisma()});
-        model.addRow(new Object[]{"Vida", "De momento nada"});
-        model.addRow(new Object[]{"Defensa", "De momento nada"});
+        model.addRow(new Object[]{"Vida", caract.getVida()});
+        model.addRow(new Object[]{"Defensa", caract.getDefensa()});
 
         // Renderizador de celdas para cambiar el color de fondo de la primera columna
         TableCellRenderer headerRenderer = new TableCellRenderer() {

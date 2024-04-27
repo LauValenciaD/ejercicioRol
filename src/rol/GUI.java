@@ -14,6 +14,7 @@ public class GUI extends JFrame {
     private JRadioButton radioOpcion2;
     private JRadioButton radioOpcion3;
     private JRadioButton radioOpcion4;
+    private JRadioButton radioOpcion5;
     private JButton btnConfirmar;
     private JLabel lblNewLabel;
     private JLabel lblTiutlo;
@@ -23,6 +24,16 @@ public class GUI extends JFrame {
 
 
     public static void main(String[] args) {
+        Raza elfo = new Raza("Elfo", "Des", 2);
+    	GUI.razasCreadas.add(elfo);
+    	GUI.comboBoxModel.addElement("Elfo");
+        Raza dragon = new Raza("Dragon", "Fue", 3);
+    	GUI.razasCreadas.add(dragon);
+    	GUI.comboBoxModel.addElement("Dragon");
+        Personaje link = new Personaje("Link", "Elfo", "Guerrero", true);
+        GUI.personajesCreados.add(link);
+        Personaje bowser = new Personaje("Bowser", "Dragon", "Guerrero");
+        GUI.personajesCreados.add(bowser);
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -45,6 +56,44 @@ public class GUI extends JFrame {
         desktopPane.setBackground(new Color(128, 0, 128));
         setContentPane(desktopPane);
         desktopPane.setLayout(null);
+        
+        // Crear botón de confirmar
+        btnConfirmar = new JButton("Confirmar");
+        btnConfirmar.setBounds(135, 350, 100, 30);
+        desktopPane.add(btnConfirmar);
+        
+        
+        
+                // Agregar ActionListener al botón de confirmar
+                btnConfirmar.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        // Mostrar el formulario o el mensaje según la opción seleccionada
+                        if (radioOpcion1.isSelected()) {
+                        	FormRaza formRaza = new FormRaza(); // Crear una nueva instancia de FormRaza
+                        	desktopPane.add(formRaza);
+                            formRaza.setVisible(true); // Hacer visible la instancia de FormRaza
+                        } else if (radioOpcion2.isSelected()) {
+                            // Mostrar formulario 2
+                        	FormPersonaje formPersonaje = new FormPersonaje();
+                        	desktopPane.add(formPersonaje);
+                            formPersonaje.setVisible(true); 
+                        } else if (radioOpcion3.isSelected()) {
+                            // Mostrar formulario 3
+                        	FormNPC formNPC = new FormNPC();
+                        	desktopPane.add(formNPC);
+                            formNPC.setVisible(true); 
+                        } else if (radioOpcion4.isSelected()) {
+                        	FormVisualizar formVisualizar = new FormVisualizar();
+                        	desktopPane.add(formVisualizar);
+                            formVisualizar.setVisible(true); 
+                            // Mostrar texto
+                        } else if (radioOpcion5.isSelected()) {
+                        	Combate combate = new Combate();
+                        	desktopPane.add(combate);
+                            combate.setVisible(true); 
+                        }
+                    }
+                });
         
         lblTiutlo = new JLabel("Creador de Personajes");
         lblTiutlo.setForeground(new Color(255, 255, 255));
@@ -72,6 +121,11 @@ public class GUI extends JFrame {
         radioOpcion4.setFont(new Font("Arial Black", Font.PLAIN, 12));
         radioOpcion4.setBounds(50, 256, 195, 30);
         desktopPane.add(radioOpcion4);
+        
+        radioOpcion5 = new JRadioButton("Combatir");
+        radioOpcion5.setFont(new Font("Arial Black", Font.PLAIN, 12));
+        radioOpcion5.setBounds(50, 306, 195, 30);
+        desktopPane.add(radioOpcion5);
 
         // Agrupar los botones de opción
         ButtonGroup grupoOpciones = new ButtonGroup();
@@ -79,14 +133,10 @@ public class GUI extends JFrame {
         grupoOpciones.add(radioOpcion2);
         grupoOpciones.add(radioOpcion3);
         grupoOpciones.add(radioOpcion4);
-
-        // Crear botón de confirmar
-        btnConfirmar = new JButton("Confirmar");
-        btnConfirmar.setBounds(135, 310, 100, 30);
-        desktopPane.add(btnConfirmar);
+        grupoOpciones.add(radioOpcion5);
         
         JPanel panel = new JPanel();
-        panel.setBounds(27, 90, 313, 261);
+        panel.setBounds(27, 90, 313, 305);
         desktopPane.add(panel);
         
         JLabel lblimagen = new JLabel("");
@@ -99,35 +149,6 @@ public class GUI extends JFrame {
         lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/images/beautiful-purple-color-gradient-background-free-vector.jpg")));
         lblNewLabel.setBounds(0, 10, 800, 600);
         desktopPane.add(lblNewLabel);
-
-
-
-        // Agregar ActionListener al botón de confirmar
-        btnConfirmar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Mostrar el formulario o el mensaje según la opción seleccionada
-                if (radioOpcion1.isSelected()) {
-                	FormRaza formRaza = new FormRaza(); // Crear una nueva instancia de FormRaza
-                	desktopPane.add(formRaza);
-                    formRaza.setVisible(true); // Hacer visible la instancia de FormRaza
-                } else if (radioOpcion2.isSelected()) {
-                    // Mostrar formulario 2
-                	FormPersonaje formPersonaje = new FormPersonaje();
-                	desktopPane.add(formPersonaje);
-                    formPersonaje.setVisible(true); 
-                } else if (radioOpcion3.isSelected()) {
-                    // Mostrar formulario 3
-                	FormNPC formNPC = new FormNPC();
-                	desktopPane.add(formNPC);
-                    formNPC.setVisible(true); 
-                } else if (radioOpcion4.isSelected()) {
-                	FormVisualizar formVisualizar = new FormVisualizar();
-                	desktopPane.add(formVisualizar);
-                    formVisualizar.setVisible(true); 
-                    // Mostrar texto
-                }
-            }
-        });
         radioOpcion1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		lblimagen.setIcon(new ImageIcon(GUI.class.getResource("/images/raza.png")));
