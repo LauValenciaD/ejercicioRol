@@ -35,7 +35,7 @@ public class SelectorCom extends JFrame {
 		setContentPane(contentPane);
         contentPane.setLayout(null);
         btnVolver = new JButton("Volver");
-        btnVolver.setBounds(82, 212, 61, 21);
+        btnVolver.setBounds(82, 212, 75, 21);
         getContentPane().add(btnVolver);
         
         
@@ -106,7 +106,7 @@ public class SelectorCom extends JFrame {
             }
         });
 
-        btnLuchar.setBounds(244, 212, 75, 21);
+        btnLuchar.setBounds(267, 212, 75, 21);
         contentPane.add(btnLuchar);
         
         JLabel lblEnemigos = new JLabel("Enemigos:");

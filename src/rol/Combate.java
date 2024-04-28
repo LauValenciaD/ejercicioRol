@@ -56,7 +56,7 @@ public class Combate extends JFrame {
         combatTextArea = new JTextArea();
         combatTextArea.setLineWrap(true); // Habilitar el ajuste de línea automático
         combatTextArea.setWrapStyleWord(true); // Ajustar las líneas al ancho del componente
-        combatTextArea.setBounds(59, 59, 495, 125);
+        combatTextArea.setBounds(59, 59, 485, 125);
         combatTextArea.setFont(new Font("SimSun", Font.BOLD, 14));
         playerHealthBar = new JProgressBar(0, 100);
         playerHealthBar.setFont(new Font("Tahoma", Font.PLAIN, 16));
