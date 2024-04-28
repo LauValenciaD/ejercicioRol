@@ -15,7 +15,6 @@ public class FormNPC extends JInternalFrame {
 	private static final long serialVersionUID = 1L; // Agregar serialVersionUID
 
     private JTextField txtNombrePJ;
-    private JTextField txtRaza;
     private JComboBox<String> comboBoxProfesion;
     private JButton btnGuardar;
     private JButton btnVolver;

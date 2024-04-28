@@ -88,9 +88,9 @@ public class GUI extends JFrame {
                             formVisualizar.setVisible(true); 
                             // Mostrar texto
                         } else if (radioOpcion5.isSelected()) {
-                        	Combate combate = new Combate();
-                        	desktopPane.add(combate);
-                            combate.setVisible(true); 
+                            SelectorCom selector = new SelectorCom(); // Crear una nueva instancia de SelectorCombate
+                            selector.setVisible(true); 
+
                         }
                     }
                 });

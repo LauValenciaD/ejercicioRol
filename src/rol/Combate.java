@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.awt.Color;
@@ -24,16 +25,19 @@ public class Combate extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-    private JLabel playerLabel, npcLabel, combatTextLabel;
+    private JLabel playerLabel, npcLabel, combatTextLabel, lblFondo;
     private JProgressBar playerHealthBar, npcHealthBar;
     private JButton attackButton;
+    private JTextArea combatTextArea;
 
     private int playerHealth = 100;
     private int npcHealth = 100;
     private JLabel lblBowser;
-    private JLabel lblFondo;
-
-	public Combate() {
+    private Personaje player;
+    private Personaje npc;
+	public Combate(Personaje player, Personaje npc) {
+		  this.player = player;
+		  this.npc = npc;
 		setForeground(new Color(30, 144, 255));
 		setTitle("Combate RPG");
         setSize(834, 729);
@@ -49,7 +53,11 @@ public class Combate extends JFrame {
         npcLabel.setHorizontalAlignment(SwingConstants.CENTER);
         npcLabel.setFont(new Font("Impact", Font.PLAIN, 15));
         npcLabel.setBounds(734, 56, 79, 33);
-
+        combatTextArea = new JTextArea();
+        combatTextArea.setLineWrap(true); // Habilitar el ajuste de línea automático
+        combatTextArea.setWrapStyleWord(true); // Ajustar las líneas al ancho del componente
+        combatTextArea.setBounds(59, 59, 495, 125);
+        combatTextArea.setFont(new Font("SimSun", Font.BOLD, 14));
         playerHealthBar = new JProgressBar(0, 100);
         playerHealthBar.setFont(new Font("Tahoma", Font.PLAIN, 16));
         playerHealthBar.setForeground(Color.GREEN);
@@ -86,13 +94,31 @@ public class Combate extends JFrame {
                 npcHealthBar.setValue(npcHealth);
                 
                 // Update combat text
-                combatTextLabel.setText("El jugador ataca e inflinge " + damage + " puntos de daño.");
+                //combatTextLabel.setText(player.getNombre() + " ataca a " + npc.getNombre()+" e inflinge " + damage + " puntos de daño.");
+                
+             // Simular un ataque del NPC
+                int damagenpc = (int)(Math.random() * 20) + 10; // Daño aleatorio entre 10 y 30
+                playerHealth -= damagenpc;
+                if (playerHealth < 0) playerHealth = 0;
+                playerHealthBar.setValue(playerHealth);
+
+                // Actualizar el texto de combate
+                combatTextLabel.setText("");
+                combatTextArea.setText(player.getNombre() + " ataca a " + npc.getNombre() + " e inflinge " + damage + " puntos de daño.\n" +
+                        npc.getNombre() + " ataca a " + player.getNombre() + " e inflige " + damagenpc + " puntos de daño.");
 
                 // Check if NPC is defeated
-                if (npcHealth == 0) {
+                if (playerHealth == 0 && npcHealth == 0) {
+                	   JOptionPane.showMessageDialog(null, "¡Empate!");
+                resetCombat();}
+                else if (npcHealth == 0) {
                     JOptionPane.showMessageDialog(null, "¡Has derrotado al enemigo!");
                     resetCombat();
+                    
                 }
+                else if (playerHealth == 0) {
+                    JOptionPane.showMessageDialog(null, "¡Has sido derrotado!");
+                    resetCombat();}
             }
         });
         getContentPane().setLayout(null);
@@ -103,7 +129,13 @@ public class Combate extends JFrame {
         getContentPane().add(npcHealthBar);
         getContentPane().add(attackButton);
         
-        JButton btnHuir = new JButton("Huir");
+        JButton btnHuir = new JButton("Cambiar Personajes");
+        btnHuir.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		   SelectorCom selector = new SelectorCom(); // Crear una nueva instancia de SelectorCombate
+                   selector.setVisible(true); 
+        	}
+        });
         btnHuir.setFont(new Font("Arial Narrow", Font.BOLD, 14));
         btnHuir.setBounds(632, 567, 144, 79);
         getContentPane().add(btnHuir);
@@ -115,10 +147,11 @@ public class Combate extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
         combatTextLabel = new JLabel("¡Comenzar combate!");
-        combatTextLabel.setForeground(new Color(0, 0, 0));
-        combatTextLabel.setBounds(29, 10, 495, 174);
-        panel.add(combatTextLabel);
         combatTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        combatTextLabel.setForeground(new Color(0, 0, 0));
+        combatTextLabel.setBounds(130, 61, 315, 70);
+        panel.add(combatTextLabel);
+        panel.add(combatTextArea);
         combatTextLabel.setFont(new Font("SimSun", Font.BOLD, 14));
         
         JLabel lblVS = new JLabel("VS");
@@ -143,6 +176,7 @@ public class Combate extends JFrame {
         npcHealthBar.setValue(npcHealth);
 
         // Clear combat text
+        combatTextArea.setText("");
         combatTextLabel.setText("¡Comenzar combate!");
     }
 }

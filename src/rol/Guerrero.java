@@ -7,11 +7,11 @@ public class Guerrero extends Profesion{
 		nivel = 1;
 		dadoVida = "D10";
 	}
-//	public int AtaqueFisico() {
+	public void AtaqueFisico() {
 //		int damage;
-//		
+		System.out.println("Defensa del Guerrero!! WIP");
 //		return damage;
-//	}
+	}
 	public void DefensaFisico() {
 		System.out.println("Defensa del Guerrero!! WIP");
 	}
