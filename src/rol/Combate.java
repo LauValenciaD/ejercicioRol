@@ -42,13 +42,13 @@ public class Combate extends JFrame {
 		setTitle("Combate RPG");
         setSize(834, 729);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        playerLabel = new JLabel("Jugador");
+        Musica.reproductor("/musica/8bitmusic.wav");
+        playerLabel = new JLabel(player.getNombre());
         playerLabel.setForeground(new Color(255, 255, 255));
         playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
         playerLabel.setBounds(20, 50, 64, 45);
         playerLabel.setFont(new Font("Impact", Font.PLAIN, 15));
-        npcLabel = new JLabel("Enemigo");
+        npcLabel = new JLabel(npc.getNombre());
         npcLabel.setForeground(new Color(255, 255, 255));
         npcLabel.setHorizontalAlignment(SwingConstants.CENTER);
         npcLabel.setFont(new Font("Impact", Font.PLAIN, 15));
@@ -56,6 +56,7 @@ public class Combate extends JFrame {
         combatTextArea = new JTextArea();
         combatTextArea.setLineWrap(true); // Habilitar el ajuste de línea automático
         combatTextArea.setWrapStyleWord(true); // Ajustar las líneas al ancho del componente
+        combatTextArea.setEditable(false); // Hacer el JTextArea no editable
         combatTextArea.setBounds(59, 59, 485, 125);
         combatTextArea.setFont(new Font("SimSun", Font.BOLD, 14));
         playerHealthBar = new JProgressBar(0, 100);
@@ -87,16 +88,16 @@ public class Combate extends JFrame {
         attackButton.setBounds(632, 465, 144, 79);
         attackButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Simulate an attack, reducing NPC's health
-                int damage = (int)(Math.random() * 20) + 10; // Random damage between 10 and 30
+                // Ataque del Player
+                int damage = (int)(Math.random() * 20) + 10; // Daño aleatorio entre 10 y 30. Cambiar por formula de ataque del Personaje
                 npcHealth -= damage;
                 if (npcHealth < 0) npcHealth = 0;
                 npcHealthBar.setValue(npcHealth);
                 
-                // Update combat text
+                // Actualizar texto, por culpa de la velocidad del programa no se ve
                 //combatTextLabel.setText(player.getNombre() + " ataca a " + npc.getNombre()+" e inflinge " + damage + " puntos de daño.");
                 
-             // Simular un ataque del NPC
+             // Ataque del NPC
                 int damagenpc = (int)(Math.random() * 20) + 10; // Daño aleatorio entre 10 y 30
                 playerHealth -= damagenpc;
                 if (playerHealth < 0) playerHealth = 0;
@@ -107,7 +108,7 @@ public class Combate extends JFrame {
                 combatTextArea.setText(player.getNombre() + " ataca a " + npc.getNombre() + " e inflinge " + damage + " puntos de daño.\n" +
                         npc.getNombre() + " ataca a " + player.getNombre() + " e inflige " + damagenpc + " puntos de daño.");
 
-                // Check if NPC is defeated
+                // Ver si muere
                 if (playerHealth == 0 && npcHealth == 0) {
                 	   JOptionPane.showMessageDialog(null, "¡Empate!");
                 resetCombat();}
