@@ -38,11 +38,13 @@ public class Combate extends JFrame {
 	public Combate(Personaje player, Personaje npc) {
 		  this.player = player;
 		  this.npc = npc;
+	
 		setForeground(new Color(30, 144, 255));
 		setTitle("Combate RPG");
         setSize(834, 729);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Musica.reproductor("/musica/8bitmusic.wav");
+    	setLocationRelativeTo(null);
+        Musica.reproductor("/musica/8bitmusic2.wav"); //musica de fondo
         playerLabel = new JLabel(player.getNombre());
         playerLabel.setForeground(new Color(255, 255, 255));
         playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -91,6 +93,7 @@ public class Combate extends JFrame {
                 // Ataque del Player
                 int damage = (int)(Math.random() * 20) + 10; // Daño aleatorio entre 10 y 30. Cambiar por formula de ataque del Personaje
                 npcHealth -= damage;
+             	Musica.efectoSonido("/musica/hit.wav");
                 if (npcHealth < 0) npcHealth = 0;
                 npcHealthBar.setValue(npcHealth);
                 
@@ -110,15 +113,18 @@ public class Combate extends JFrame {
 
                 // Ver si muere
                 if (playerHealth == 0 && npcHealth == 0) {
-                	   JOptionPane.showMessageDialog(null, "¡Empate!");
+                	Musica.efectoSonido("/musica/Mario Death.wav");
+                	   JOptionPane.showMessageDialog(Combate.this, "¡Empate!");
                 resetCombat();}
                 else if (npcHealth == 0) {
-                    JOptionPane.showMessageDialog(null, "¡Has derrotado al enemigo!");
+                	Musica.efectoSonido("/musica/victory.wav");
+                    JOptionPane.showMessageDialog(Combate.this, "¡Has ganado!");                 
                     resetCombat();
                     
                 }
                 else if (playerHealth == 0) {
-                    JOptionPane.showMessageDialog(null, "¡Has sido derrotado!");
+                	Musica.efectoSonido("/musica/Mario Death.wav");
+                    JOptionPane.showMessageDialog(Combate.this, "¡Has sido derrotado!");
                     resetCombat();}
             }
         });
@@ -130,7 +136,7 @@ public class Combate extends JFrame {
         getContentPane().add(npcHealthBar);
         getContentPane().add(attackButton);
         
-        JButton btnHuir = new JButton("Cambiar Personajes");
+        JButton btnHuir = new JButton("Cambiar Personaje");
         btnHuir.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		   SelectorCom selector = new SelectorCom(); // Crear una nueva instancia de SelectorCombate

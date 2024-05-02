@@ -1,11 +1,13 @@
 package rol;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.border.LineBorder;
 
 public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L; // Agregar serialVersionUID
@@ -141,6 +143,9 @@ public class GUI extends JFrame {
         
         JLabel lblimagen = new JLabel("");
         lblimagen.setIcon(new ImageIcon(GUI.class.getResource("/images/bg3 (2).jpg")));
+        
+        Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
+        lblimagen.setBorder(new LineBorder(new Color(0, 0, 0), 2));
        
         lblimagen.setBounds(350, 34, 400, 450);
         desktopPane.add(lblimagen);
@@ -167,6 +172,11 @@ public class GUI extends JFrame {
         radioOpcion4.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		lblimagen.setIcon(new ImageIcon(GUI.class.getResource("/images/creados.jpg")));
+        	}
+        });
+        radioOpcion5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		lblimagen.setIcon(new ImageIcon(GUI.class.getResource("/images/DNDFIGHT.png")));
         	}
         });
 }
