@@ -13,11 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
